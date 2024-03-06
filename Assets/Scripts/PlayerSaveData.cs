@@ -10,10 +10,11 @@ public class PlayerSaveData : MonoBehaviour
 
     void Update()
     {
-
         PlayerPhysicData playerData = FindObjectOfType<PlayerController>().GetPlayerControllerData();
         Debug.Log("torque" + playerData.Rotation);
         mydata.PlayerPhysicData = playerData;
+        // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
+        mydata.Health = HealthManager.health;
         if (Input.GetKeyDown(KeyCode.R))
         {
             OnClickSaveButton();
@@ -27,7 +28,9 @@ public class PlayerSaveData : MonoBehaviour
 
     void SetSaveGameManager(SaveData mydata)
     {
+        Debug.Log("health " + mydata.Health);
         SaveGameManager.CurrentSaveData.PlayerPhysicData = mydata.PlayerPhysicData;
+        SaveGameManager.CurrentSaveData.Health = mydata.Health;
 
     }
 
@@ -43,6 +46,7 @@ public class PlayerSaveData : MonoBehaviour
         SaveGameManager.LoadGame();
         mydata = SaveGameManager.CurrentSaveData;
         FindObjectOfType<PlayerController>().SetPlayerPositionOnLoad(mydata.PlayerPhysicData);
+        FindObjectOfType<HealthManager>().LoadHealth(mydata.Health);
     }
 
 

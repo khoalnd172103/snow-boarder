@@ -7,10 +7,8 @@ namespace SaveLoadSystem
     [System.Serializable]
     public class SaveData
     {
-        // public Vector2 Position;
-        // public float Speed;
-        // public float TotalTorque;
         public PlayerPhysicData PlayerPhysicData;
 
+        public int Health;
     }
 }

@@ -44,4 +44,14 @@ public class HealthManager : MonoBehaviour
             UpdateHearts();
         }
     }
+
+    public void LoadHealth(int savedHealth)
+    {
+        health = savedHealth;
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
 }
