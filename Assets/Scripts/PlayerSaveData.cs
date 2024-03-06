@@ -16,18 +16,12 @@ public class PlayerSaveData : MonoBehaviour
         mydata.PlayerPhysicData = playerData;
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SetSaveGameManager(mydata);
-            SaveGameManager.SaveGame();
-            Debug.Log("save at: " + SaveGameManager.CurrentSaveData);
+            OnClickSaveButton();
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SaveGameManager.LoadGame();
-            mydata = SaveGameManager.CurrentSaveData;
-
-            FindObjectOfType<PlayerController>().SetPlayerPositionOnLoad(mydata.PlayerPhysicData);
-
+            OnClickLoadButton();
         }
     }
 
@@ -35,6 +29,20 @@ public class PlayerSaveData : MonoBehaviour
     {
         SaveGameManager.CurrentSaveData.PlayerPhysicData = mydata.PlayerPhysicData;
 
+    }
+
+    public void OnClickSaveButton()
+    {
+        SetSaveGameManager(mydata);
+        SaveGameManager.SaveGame();
+        Debug.Log("save at: " + SaveGameManager.CurrentSaveData);
+    }
+
+    public void OnClickLoadButton()
+    {
+        SaveGameManager.LoadGame();
+        mydata = SaveGameManager.CurrentSaveData;
+        FindObjectOfType<PlayerController>().SetPlayerPositionOnLoad(mydata.PlayerPhysicData);
     }
 
 

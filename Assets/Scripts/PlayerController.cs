@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoadSystem;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +13,18 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
     bool canMove = true;
+
+    // private void Awake()
+    // {
+    //     LoadPlayerPositionBaseOnFlag();
+    // }
+
+    // private void LoadPlayerPositionBaseOnFlag()
+    // {
+    //     SaveGameManager.LoadGame();
+    //     var mydata = SaveGameManager.CurrentSaveData;
+    //     SetPlayerPositionOnLoad(mydata.PlayerPhysicData);
+    // }
 
     // Start is called before the first frame update
     void Start()

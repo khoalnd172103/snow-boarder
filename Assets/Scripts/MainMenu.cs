@@ -17,9 +17,24 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadScene(int scene)
+    public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadSceneAsync(scene);
+        // Subscribe to the sceneLoaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
+        // Load the scene asynchronously
+        SceneManager.LoadSceneAsync(sceneIndex);
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Unsubscribe from the sceneLoaded event to prevent multiple subscriptions
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // Explicitly call Awake() and Start() for all GameObjects in the scene
+        foreach (GameObject go in scene.GetRootGameObjects())
+        {
+            go.BroadcastMessage("Awake", SendMessageOptions.DontRequireReceiver);
+            go.BroadcastMessage("Start", SendMessageOptions.DontRequireReceiver);
+        }
     }
 }
