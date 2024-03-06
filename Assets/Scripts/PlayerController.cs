@@ -57,5 +57,36 @@ public class PlayerController : MonoBehaviour
         {
             rb2d.AddTorque(-torqueAmount);
         }
+        Debug.Log("Torque " + rb2d.totalTorque);
     }
+
+    public void SetPlayerPositionOnLoad(PlayerPhysicData playerPhysicData)
+    {
+        transform.position = playerPhysicData.Posistion;
+        surfaceEffector2D.speed = playerPhysicData.Speed;
+        rb2d.angularVelocity = playerPhysicData.TotalTorque;
+        rb2d.rotation = playerPhysicData.Rotation;
+    }
+
+    public PlayerPhysicData GetPlayerControllerData()
+    {
+        return new PlayerPhysicData
+        {
+            Posistion = transform.position,
+            Speed = surfaceEffector2D.speed,
+            TotalTorque = rb2d.totalTorque,
+            Rotation = rb2d.rotation,
+        };
+    }
+}
+
+
+[System.Serializable]
+public class PlayerPhysicData
+{
+    public Vector2 Posistion;
+    public float Speed;
+    public float TotalTorque;
+    public float Rotation;
+
 }

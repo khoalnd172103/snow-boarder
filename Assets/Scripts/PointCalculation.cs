@@ -55,4 +55,9 @@ public class PointCalculation : MonoBehaviour
             }
         }
     }
+
+    public float ReturnCurrentScore()
+    {
+        return score;
+    }
 }
