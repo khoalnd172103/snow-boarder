@@ -11,7 +11,7 @@ public class PlayerSaveData : MonoBehaviour
     void Update()
     {
         PlayerPhysicData playerData = FindObjectOfType<PlayerController>().GetPlayerControllerData();
-        Debug.Log("torque" + playerData.Rotation);
+        //Debug.Log("torque" + playerData.Rotation);
         mydata.PlayerPhysicData = playerData;
         // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
         mydata.Health = HealthManager.health;
