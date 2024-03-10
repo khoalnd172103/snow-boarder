@@ -20,6 +20,10 @@ public class HealthManager : MonoBehaviour
             SaveData myData = SaveGameManager.CurrentSaveData;
             LoadHealth(myData.Health);
         }
+        else
+        {
+            health = 3;
+        }
     }
 
     void Update()

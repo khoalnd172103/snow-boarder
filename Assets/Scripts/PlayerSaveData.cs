@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using SaveLoadSystem;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerSaveData : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class PlayerSaveData : MonoBehaviour
         mydata.PlayerPhysicData = playerData;
         // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
         mydata.Health = HealthManager.health;
-        mydata.highestSceneNumber = PlayerPrefs.GetInt("highestSceneNumber");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        mydata.highestSceneNumber = currentSceneIndex + 1;
     }
 
     void SetSaveGameManager(SaveData mydata)
