@@ -15,15 +15,7 @@ public class PlayerSaveData : MonoBehaviour
         mydata.PlayerPhysicData = playerData;
         // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
         mydata.Health = HealthManager.health;
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            OnClickSaveButton();
-        }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            OnClickLoadButton();
-        }
     }
 
     void SetSaveGameManager(SaveData mydata)
@@ -34,14 +26,14 @@ public class PlayerSaveData : MonoBehaviour
 
     }
 
-    public void OnClickSaveButton()
+    public void Save()
     {
         SetSaveGameManager(mydata);
         SaveGameManager.SaveGame();
         Debug.Log("save at: " + SaveGameManager.CurrentSaveData);
     }
 
-    public void OnClickLoadButton()
+    public void Load()
     {
         SaveGameManager.LoadGame();
         mydata = SaveGameManager.CurrentSaveData;
