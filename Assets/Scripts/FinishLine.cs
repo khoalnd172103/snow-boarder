@@ -21,10 +21,14 @@ public class FinishLine : MonoBehaviour
     void NextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("highestSceneNumber", currentSceneIndex);
+        PlayerPrefs.SetInt("highestSceneNumber", currentSceneIndex + 1);
+        //save data here
+        FindObjectOfType<PlayerSaveData>().Save();
         if (currentSceneIndex == 3)
         {
             // WIN LOGIC HERE
+
+            //maybe a win scene
         }
         else
         {

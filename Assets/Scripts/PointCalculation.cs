@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PointCalculation : MonoBehaviour
 {
@@ -21,18 +23,12 @@ public class PointCalculation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // highScore = PlayerPrefs.GetFloat("highScore");
+        PlayerPrefs.SetInt("highestSceneNumber", SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (finishLine.position.x <= transform.position.x)
-        // {
-        //     scoreText.text = "You win";
-        // }
-
-
         score = (transform.position.x - startPoint.transform.position.x) * 100 / (finishLine.transform.position.x - startPoint.transform.position.x);
 
         scoreText.text = "Distance travel: " + score.ToString("F1") + " %";

@@ -10,5 +10,7 @@ namespace SaveLoadSystem
         public PlayerPhysicData PlayerPhysicData;
 
         public int Health;
+
+        public int highestSceneNumber;
     }
 }

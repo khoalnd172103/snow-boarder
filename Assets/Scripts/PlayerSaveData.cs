@@ -15,7 +15,7 @@ public class PlayerSaveData : MonoBehaviour
         mydata.PlayerPhysicData = playerData;
         // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
         mydata.Health = HealthManager.health;
-
+        mydata.highestSceneNumber = PlayerPrefs.GetInt("highestSceneNumber");
     }
 
     void SetSaveGameManager(SaveData mydata)
@@ -23,6 +23,7 @@ public class PlayerSaveData : MonoBehaviour
         Debug.Log("health " + mydata.Health);
         SaveGameManager.CurrentSaveData.PlayerPhysicData = mydata.PlayerPhysicData;
         SaveGameManager.CurrentSaveData.Health = mydata.Health;
+        SaveGameManager.CurrentSaveData.highestSceneNumber = mydata.highestSceneNumber;
 
     }
 

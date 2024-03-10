@@ -42,7 +42,7 @@ public class TakeDamage : MonoBehaviour
             {
                 Debug.Log("Game over");
                 gameObject.SetActive(false);
-                Invoke(nameof(ReloadScene), 0.5f);
+                SceneManager.LoadSceneAsync(0);
             }
             else
             {
@@ -51,10 +51,7 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(0);
-    }
+
 
     IEnumerator GetHurt()
     {

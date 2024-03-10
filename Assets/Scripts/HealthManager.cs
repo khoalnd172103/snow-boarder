@@ -1,3 +1,4 @@
+using SaveLoadSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,12 @@ public class HealthManager : MonoBehaviour
     void Awake()
     {
         UpdateHearts();
+        if (SaveGameManager.DoesSaveFileExist())
+        {
+            SaveGameManager.LoadGame();
+            SaveData myData = SaveGameManager.CurrentSaveData;
+            LoadHealth(myData.Health);
+        }
     }
 
     void Update()
