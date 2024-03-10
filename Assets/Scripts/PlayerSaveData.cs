@@ -11,19 +11,11 @@ public class PlayerSaveData : MonoBehaviour
     void Update()
     {
         PlayerPhysicData playerData = FindObjectOfType<PlayerController>().GetPlayerControllerData();
-        Debug.Log("torque" + playerData.Rotation);
+        //Debug.Log("torque" + playerData.Rotation);
         mydata.PlayerPhysicData = playerData;
         // mydata.Health = FindObjectOfType<HealthManager>().GetHealth();
         mydata.Health = HealthManager.health;
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            OnClickSaveButton();
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            OnClickLoadButton();
-        }
+        mydata.highestSceneNumber = PlayerPrefs.GetInt("highestSceneNumber");
     }
 
     void SetSaveGameManager(SaveData mydata)
@@ -31,17 +23,18 @@ public class PlayerSaveData : MonoBehaviour
         Debug.Log("health " + mydata.Health);
         SaveGameManager.CurrentSaveData.PlayerPhysicData = mydata.PlayerPhysicData;
         SaveGameManager.CurrentSaveData.Health = mydata.Health;
+        SaveGameManager.CurrentSaveData.highestSceneNumber = mydata.highestSceneNumber;
 
     }
 
-    public void OnClickSaveButton()
+    public void Save()
     {
         SetSaveGameManager(mydata);
         SaveGameManager.SaveGame();
         Debug.Log("save at: " + SaveGameManager.CurrentSaveData);
     }
 
-    public void OnClickLoadButton()
+    public void Load()
     {
         SaveGameManager.LoadGame();
         mydata = SaveGameManager.CurrentSaveData;

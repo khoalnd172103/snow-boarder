@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaveLoadSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
 
+    public Button LoadButton;
     public void PlayGame()
     {
-        PlayerPrefs.SetInt("nextSceneNumber", 1);
+        PlayerPrefs.SetInt("highestSceneNumber", 1);
+        // PlayerPrefs.SetInt("nextSceneNumber", 1);
+        SaveGameManager.DeleteSaveFile();
         SceneManager.LoadSceneAsync(1);
     }
 
@@ -17,24 +22,20 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadScene(int sceneIndex)
+    public void LoadGame()
     {
-        // Subscribe to the sceneLoaded event
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // Load the scene asynchronously
-        SceneManager.LoadSceneAsync(sceneIndex);
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Unsubscribe from the sceneLoaded event to prevent multiple subscriptions
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-
-        // Explicitly call Awake() and Start() for all GameObjects in the scene
-        foreach (GameObject go in scene.GetRootGameObjects())
+        if (SaveGameManager.DoesSaveFileExist())
         {
-            go.BroadcastMessage("Awake", SendMessageOptions.DontRequireReceiver);
-            go.BroadcastMessage("Start", SendMessageOptions.DontRequireReceiver);
+            SaveGameManager.LoadGame();
+            SaveData mydata = SaveGameManager.CurrentSaveData;
+            SceneManager.LoadSceneAsync(mydata.highestSceneNumber);
         }
     }
+
+    void Update()
+    {
+        // Enable or disable the button based on the condition
+        LoadButton.interactable = SaveGameManager.DoesSaveFileExist();
+    }
+
 }

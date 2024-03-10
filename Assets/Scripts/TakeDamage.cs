@@ -18,12 +18,19 @@ public class TakeDamage : MonoBehaviour
         Debug.Log("Enemy: " + enemies.Count);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.transform.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
             Debug.Log("Hit enemy");
-            GameObject enemyToDestroy = collision.gameObject;
+
+            if (GetComponent<ShieldManager>() != null && GetComponent<ShieldManager>().hasShield)
+            {
+                Debug.Log("Player has shield, no damage taken");
+                return;
+            }
+
+            GameObject enemyToDestroy = other.gameObject;
             if (enemies.Contains(enemyToDestroy))
             {
                 enemies.Remove(enemyToDestroy);
@@ -35,7 +42,7 @@ public class TakeDamage : MonoBehaviour
             {
                 Debug.Log("Game over");
                 gameObject.SetActive(false);
-                Invoke(nameof(ReloadScene), 0.5f);
+                SceneManager.LoadSceneAsync(0);
             }
             else
             {
@@ -44,10 +51,7 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(0);
-    }
+
 
     IEnumerator GetHurt()
     {

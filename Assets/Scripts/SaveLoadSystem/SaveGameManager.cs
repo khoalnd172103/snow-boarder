@@ -47,5 +47,27 @@ namespace SaveLoadSystem
 
             CurrentSaveData = tempData;
         }
+
+        public static void DeleteSaveFile()
+        {
+            string saveFilePath = Application.persistentDataPath + SaveDirectory + FileName;
+
+            // Check if the save file exists
+            if (File.Exists(saveFilePath))
+            {
+                // Delete the save file
+                File.Delete(saveFilePath);
+            }
+            else
+            {
+                Debug.LogError("Save file does not exist");
+            }
+        }
+
+        public static bool DoesSaveFileExist()
+        {
+            string saveFilePath = Application.persistentDataPath + SaveDirectory + FileName;
+            return File.Exists(saveFilePath);
+        }
     }
 }

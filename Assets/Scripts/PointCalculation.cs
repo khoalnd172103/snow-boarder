@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PointCalculation : MonoBehaviour
 {
@@ -16,44 +18,21 @@ public class PointCalculation : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
-    [SerializeField]
-    private TextMeshProUGUI highScoreText;
-
     private float score;
-    private float highScore;
-
-    private bool isCompleteRotation;
 
     // Start is called before the first frame update
     void Start()
     {
-        highScore = PlayerPrefs.GetFloat("highScore");
+        PlayerPrefs.SetInt("highestSceneNumber", SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (finishLine.position.x <= transform.position.x)
-        {
-            scoreText.text = "You win";
-        }
-        else
-        {
-            highScoreText.text = "High score: " + highScore.ToString("F1");
+        score = (transform.position.x - startPoint.transform.position.x) * 100 / (finishLine.transform.position.x - startPoint.transform.position.x);
 
-            score = (transform.position.x - startPoint.transform.position.x);
-            if (score > 1.0)
-            {
-                scoreText.text = "Score: " + score.ToString("F1");
-            }
+        scoreText.text = "Distance travel: " + score.ToString("F1") + " %";
 
-
-            if (highScore < score)
-            {
-                highScore = score;
-                PlayerPrefs.SetFloat("highScore", score);
-            }
-        }
     }
 
     public float ReturnCurrentScore()
