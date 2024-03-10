@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HeartPickup : MonoBehaviour
 {
-    private readonly List<GameObject> hearts = new();
+    private readonly List<GameObject> hearts = new List<GameObject>();
 
     private void Start()
     {
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Heart");
-        foreach (GameObject heart in enemyObjects)
+        GameObject[] heartObjects = GameObject.FindGameObjectsWithTag("Heart");
+        foreach (GameObject heart in heartObjects)
         {
             hearts.Add(heart);
         }
@@ -17,12 +17,12 @@ public class HeartPickup : MonoBehaviour
         Debug.Log("Heart count: " + hearts.Count);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.transform.CompareTag("Heart"))
+        if (other.CompareTag("Heart"))
         {
             Debug.Log("Got heart");
-            GameObject heartToDestroy = collision.gameObject;
+            GameObject heartToDestroy = other.gameObject;
             if (hearts.Contains(heartToDestroy))
             {
                 hearts.Remove(heartToDestroy);

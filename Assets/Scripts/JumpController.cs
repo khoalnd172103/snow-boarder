@@ -3,7 +3,7 @@ using UnityEngine;
 public class JumpController : MonoBehaviour
 {
     Rigidbody2D rb;
-    [SerializeField] float jumpPower = 10f;
+    [SerializeField] float jumpPower = 20f;
     public Transform groundCheck;
     public LayerMask groundLayer;
     bool isGrounded;
