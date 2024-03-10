@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 512b3909b9ff8834da7ea222aaa363e8
   - enabled: 1
+    path: Assets/Scenes/MapEasy.unity
+    guid: 505826da5cbc5c14cad2f840d7991af0
+  - enabled: 1
+    path: Assets/Scenes/MapNormal.unity
+    guid: a32ad663a28cfcc418867020c9459d2c
+  - enabled: 1
+    path: Assets/Scenes/MapHard.unity
+    guid: 55927e747666d49408326e30e39dc7f5
+  - enabled: 0
     path: Assets/Scenes/Health system.unity
     guid: 56395040efdd0e14086c90d753959fb6
   m_configObjects: {}

@@ -16,44 +16,27 @@ public class PointCalculation : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
-    [SerializeField]
-    private TextMeshProUGUI highScoreText;
-
     private float score;
-    private float highScore;
-
-    private bool isCompleteRotation;
 
     // Start is called before the first frame update
     void Start()
     {
-        highScore = PlayerPrefs.GetFloat("highScore");
+        // highScore = PlayerPrefs.GetFloat("highScore");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (finishLine.position.x <= transform.position.x)
-        {
-            scoreText.text = "You win";
-        }
-        else
-        {
-            highScoreText.text = "High score: " + highScore.ToString("F1");
-
-            score = (transform.position.x - startPoint.transform.position.x);
-            if (score > 1.0)
-            {
-                scoreText.text = "Score: " + score.ToString("F1");
-            }
+        // if (finishLine.position.x <= transform.position.x)
+        // {
+        //     scoreText.text = "You win";
+        // }
 
 
-            if (highScore < score)
-            {
-                highScore = score;
-                PlayerPrefs.SetFloat("highScore", score);
-            }
-        }
+        score = (transform.position.x - startPoint.transform.position.x) * 100 / (finishLine.transform.position.x - startPoint.transform.position.x);
+
+        scoreText.text = "Distance travel: " + score.ToString("F1") + " %";
+
     }
 
     public float ReturnCurrentScore()
