@@ -11,8 +11,6 @@ public class MainMenu : MonoBehaviour
     public Button LoadButton;
     public void PlayGame()
     {
-        PlayerPrefs.SetInt("highestSceneNumber", 1);
-        // PlayerPrefs.SetInt("nextSceneNumber", 1);
         SaveGameManager.DeleteSaveFile();
         SceneManager.LoadSceneAsync(1);
     }
