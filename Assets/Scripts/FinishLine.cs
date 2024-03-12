@@ -32,7 +32,7 @@ public class FinishLine : MonoBehaviour
         else
         {
 
-            SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+            SceneManager.LoadSceneAsync(4);
         }
     }
 }
