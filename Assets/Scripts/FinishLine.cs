@@ -26,7 +26,7 @@ public class FinishLine : MonoBehaviour
         if (currentSceneIndex == 3)
         {
             // WIN LOGIC HERE
-
+            SceneManager.LoadSceneAsync(5);
             //maybe a win scene
         }
         else
