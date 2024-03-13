@@ -30,10 +30,10 @@ public class ShieldManager : MonoBehaviour
         shieldObject.SetActive(true);
         Debug.Log("Shield activate");
 
-        if (OnShieldActivated != null)
-        {
-            OnShieldActivated();
-        }
+        OnShieldActivated?.Invoke();
+
+        shieldObject.GetComponent<Renderer>().enabled = false;
+        Debug.Log("SHIELD GONE");
     }
 
     public void DeactivateShield()
@@ -42,9 +42,6 @@ public class ShieldManager : MonoBehaviour
         shieldObject.SetActive(false);
         Debug.Log("Shield deactivate");
 
-        if (OnShieldDeactivated != null)
-        {
-            OnShieldDeactivated(); // Invoke the event when the shield is deactivated
-        }
+        OnShieldDeactivated?.Invoke();
     }
 }

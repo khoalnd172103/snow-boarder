@@ -60,7 +60,7 @@ namespace SaveLoadSystem
             }
             else
             {
-                Debug.LogError("Save file does not exist");
+                Debug.Log("Save file does not exist");
             }
         }
 
